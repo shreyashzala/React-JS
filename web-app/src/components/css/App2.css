@@ -1,0 +1,14 @@
+.heading{
+    display: flex;
+    flex-wrap: wrap;
+}
+.list{
+    width: 33%;
+    padding: 20px;
+}
+.card-body{
+    height: 200px;
+}
+.card-header{
+    height: 200px;
+}
