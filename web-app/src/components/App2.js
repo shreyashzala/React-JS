@@ -1,6 +1,6 @@
 import React from 'react';
-import { blog } from './BlogList';
-import './css/App2.css';
+import { blog } from '../containers/BlogList';
+import '../assets/App2.css';
 
 
 export default function App2() {
