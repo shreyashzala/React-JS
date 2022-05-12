@@ -1,7 +1,7 @@
 import React, {  useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { LoadButtons, LoadClear, LoadAns, LoadBackspace } from './redux/calculatorRedux/actions'
-import { CALCULATER_KEY } from './redux/calculatorRedux/reducer';
+import { LoadButtons, LoadClear, LoadAns, LoadBackspace } from '../actions/actions'
+import { CALCULATER_KEY } from '../reducer/reducer';
 
 
 const App3 = () => {
