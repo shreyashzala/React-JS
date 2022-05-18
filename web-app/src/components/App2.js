@@ -1,64 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { blog } from '../containers/BlogList';
 import '../assets/App2.css';
+import Navbar from './Navbar';
+import { Card, CardActions, CardContent, Typography, Button, Dialog, DialogTitle, DialogContent } from '@mui/material';
+
 
 
 export default function App2() {
 
+    const [open, setOpen] = useState(false);
 
-    function card(val) {
-        const id = `#${val.target}`;
-        const modal = `${val.target}Label`;
+    const handleOpen = () => { setOpen(true) }
+    const handleClose = () => { setOpen(false) }
+    
 
-        return (
 
-            <div className='list' key={val.id}>
-                <div className='card'>
-                    <h4 className='card-header'> {val.title}</h4>
-
-                    <div className='card-body'>
-                        <p>{val.details}</p>
-                        <button className='btn btn-danger mt-2' data-toggle="modal"
-                            data-target={id} >Read More</button>
-                    </div>
-                    
-                </div>
-
-                {/* <!-- Modal --> */}
-                <div className="modal fade" id={val.target} tabIndex="-1" role="dialog" aria-labelledby={modal} aria-hidden="true">
-                    <div className="modal-dialog modal-dialog-centered" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id={modal}>{val.title}</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                                {val.dis}
-                            </div>
-                            <div class="modal-footer">
-                                <strong>-{val.auther}</strong>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                {/* End Modal */}
-            </div>
-        )
-    }
 
 
     return (
         <>
-            <h1>Blogs</h1>
+            <Navbar title="BlogList" />
+            <div className='container'>
+                <h1>Blogs</h1>
 
-            <div className='heading'>
-                {blog.map(card)}
+
+                <div className='heading'>
+                    {/* {blog.map(card)} */}
+                    {blog.map((item) => {
+                        return (
+                            <>
+                                <div className="list" key={item.id}>
+
+                                    <Card sx={{ maxWidth: 450 }}>
+
+                                        <CardContent>
+                                            <Typography variant='h5' sx={{ mb: 2, height: 150 }}><strong>{item.title}</strong></Typography><hr />
+                                            <Typography>{item.details}</Typography>
+                                            <Typography sx={{ mt: 2, textAlign: 'right' }}><strong>-{item.auther}</strong></Typography>
+
+                                        </CardContent>
+                                        <CardActions>
+                                            <Button variant='contained' color='error' sx={{ m: 2 }} onClick={handleOpen}>Read More</Button>
+                                        </CardActions>
+                                    </Card>
+                                    <Dialog
+                                        open={open}
+                                        onClose={handleClose}
+                                        aria-labelledby="alert-dialog-title"
+                                        aria-describedby="alert-dialog-description"
+                                    >
+                                        <DialogTitle id="alert-dialog-title"><strong>{item.title}</strong></DialogTitle>
+                                        <DialogContent id="alert-dialog-description">{item.dis}</DialogContent>
+                                    </Dialog>
+
+                                </div>
+                            </>
+                        )
+                    })}
+                </div>
+
             </div>
-
-
         </>
     )
 }
