@@ -25,9 +25,7 @@ const Start = () => {
                 gameState("quiz");
               }
 
-
-
-            }}>{game} Quiz</Button>
+            }}>Start Quiz</Button>
           </div>
 
         </Paper>
